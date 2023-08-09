@@ -11,3 +11,5 @@ rm ./.config/rofi
 
 cp -r ./JDE/awesome ./.config
 cp -r ./JDE/rofi ./.config
+
+rm -r JDE
