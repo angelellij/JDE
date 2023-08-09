@@ -6,8 +6,8 @@ systemctl start lightdm
 
 mkdir -p ~/.config/rofi
 
-rm ~/.config/awesome
-rm ~/.config/rofi
+rm ./.config/awesome
+rm ./.config/rofi
 
-cp -r $HOME/JDE/awesome ~/.config
-cp -r $HOME/JDE/rofi ~/.config
+cp -r ./JDE/awesome ~/.config
+cp -r ./JDE/rofi ~/.config
