@@ -8,9 +8,9 @@ local rofi_command = 'rofi -show drun'
 return {
   -- List of apps to start by default on some actions
   default = {
-    terminal = 'konsole',
+    terminal = 'alacritty',
     rofi = rofi_command,
-    quake = 'konsole',
+    quake = 'alacritty',
     screenshot = 'flameshot gui -p ~/Pictures/Screenshots/',
     browser = 'google-chrome',
     editor = 'code',
