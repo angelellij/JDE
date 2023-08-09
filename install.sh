@@ -5,8 +5,14 @@ BLOAT=true
 
 #If bloat is true you can finetune some apps to not install
 CODE=true
-DISCORD=true
+CHROME=true
+
 GIMP=true
+
+DISCORD=true
+STEAM=true
+
+
 
 set -x
 
@@ -19,21 +25,35 @@ apt-get install lightdm alacritty nemo code chromium awesome fonts-roboto rofi c
 
 if [ "$BLOAT" = true ]; then
 	if [ "$CODE" = true ]; then
-		wget -O ~/d.deb "https://go.microsoft.com/fwlink/?LinkID=760868"
-		dpkg -i ~/d.deb
-		rm ~/d.deb
+		wget -O /home/$USERNAME/d.deb "https://go.microsoft.com/fwlink/?LinkID=760868"
+		dpkg -i /home/$USERNAME/d.deb
+		rm /home/$USERNAME/d.deb
 	fi
 
 	if [ "$DISCORD" = true ]; then
-		wget -O ~/d.deb https://discord.com/api/download?platform=linux&format=deb
-		dpkg -i ~/d.deb
-		rm ~/d.deb
+		wget -O /home/$USERNAME/d.deb https://discord.com/api/download?platform=linux&format=deb
+		dpkg -i /home/$USERNAME/d.deb
+		rm /home/$USERNAME/d.deb
 	fi
 
+	if [ "$CHROME" = true ]; then
+		wget -O /home/$USERNAME/d.deb https://www.google.com/chrome/next-steps.html?statcb=0&installdataindex=empty&defaultbrowser=0#
+		dpkg -i /home/$USERNAME/d.deb
+		rm /home/$USERNAME/d.deb
+	fi
+	
+	if [ "$STEAM" = true ]; then
+		wget -O /home/$USERNAME/d.deb https://cdn.akamai.steamstatic.com/client/installer/steam.deb
+		dpkg -i /home/$USERNAME/d.deb
+		rm /home/$USERNAME/d.deb
+	fi
+	
+
+
 	if [ "$GIMP" = true ]; then
-		wget -O ~/d.deb https://discord.com/api/download?platform=linux&format=deb
-		dpkg -i ~/d.deb
-		rm ~/d.deb
+		wget -O /home/$USERNAME/d.deb https://discord.com/api/download?platform=linux&format=deb
+		dpkg -i /home/$USERNAME/d.deb
+		rm /home/$USERNAME/d.deb
 	fi
 fi
 systemctl start lightdm
