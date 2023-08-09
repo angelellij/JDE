@@ -1,0 +1,100 @@
+/* vim:ft=css */
+/************************************************
+ * ROFI Color theme
+ * User: leofa
+ * Copyright: 2017 leofa
+ ***********************************************/
+
+* {
+    font: "Roboto Light 16";
+
+    transparent:                 rgba(0,0,0,0%);
+    white-opacity:               rgba(248, 248, 213,10%);
+    txt:                         rgba ( 255, 255, 255, 100 % );
+    pr:                          rgba ( 22, 56, 69, 95 % );
+    sec:                         rgb(248, 248, 213);
+    linear:                      linear-gradient(to right, hsl( 197deg, 52%, 16% ), hsl( 197deg, 52%, 16% ));
+    linear-sec:                  linear-gradient(to right, rgb(166, 25, 140), rgba(90, 184, 196,5%) );
+
+    foreground:                  @txt;
+   
+    background:                  @transparent;
+    selected-normal-background:  @sec;
+
+    border-color:                @transparent;
+    spacing:                     10;
+}
+#window {
+    background-color: @background;
+    background-image:            @linear; 
+    border:           0;
+    padding:          5;
+    height:           100%;
+    width:            30%;
+    x-offset:         -35%;
+}
+#mainbox {
+    border:  0;
+    padding: 5% 2%;
+}
+#message {}
+#textbox {
+    text-color: @foreground;
+}
+#listview {
+    fixed-height: 0;
+    spacing:      2px ;
+    scrollbar:    false;
+    padding:      0;
+    border:       0;
+}
+#element {
+    text-color: inherit;
+    color: @foreground;
+    padding: 12px 0 12px 20px; 
+}
+
+element-text {
+ text-color: inherit;
+}
+
+#element.selected.normal {
+    border: 0 0 0 6px; 
+    border-color: @sec;
+    border-radius: 0 5px 5px 0;
+    background-color: @white-opacity;
+}
+
+#element.alternate.normal {
+    background-color: @transparent;
+}
+
+#scrollbar {}
+#sidebar {}
+#button {}
+#button.selected {}
+#prompt {}
+
+#inputbar {
+    spacing:    0;
+    padding:    1px ;
+}
+#case-indicator {
+}
+#entry {
+    spacing:    0;
+    text-color: @foreground;
+}
+
+#inputbar {
+    children:   [ entry,case-indicator ];
+    border: 0 0 2px 0;
+    border-color: @white-opacity;
+    padding: 12px 0 12px 20px;
+    margin:0 0 20px;
+}
+#textbox-prompt-colon {
+    expand:     false;
+    str:        ":";
+    text-color: @foreground;
+}
