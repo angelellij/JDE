@@ -14,10 +14,8 @@ DISCORD=true
 
 CHROME=true
 
-GIMP=true
-
-
 STEAM=true
+GIMP=true
 
 
 #Utilities
@@ -31,6 +29,11 @@ get_install_deb() {
         sudo dpkg -i ~/d.deb
         sudo rm ~/d.deb
     fi
+}
+
+rm_desk() {
+    local DESK="$1"
+    sudo rm "/usr/share/applications/${DESK}.desktop"
 }
 
 #-------------------------
@@ -62,10 +65,10 @@ sudo apt-get --fix-broken install
 if [ "$BLOAT" = true ]; then
 	get_install_deb $CODE "https://go.microsoft.com/fwlink/?LinkID=760868"
 	get_install_deb $GITHUB "https://github.com/shiftkey/desktop/releases/download/release-3.2.7-linux2/GitHubDesktop-linux-amd64-3.2.7-linux2.deb"
-	get_install_deb $DISCORD "deb https://discord.com/api/download?platform=linux&format=deb"
-	get_install_deb $CHROME "https://www.google.com/chrome/next-steps.html?statcb=0&installdataindex=empty&defaultbrowser=0#"
+	get_install_deb $DISCORD "https://discord.com/api/download?platform=linux&format=deb"
+	get_install_deb $CHROME "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
 	get_install_deb $STEAM "https://cdn.akamai.steamstatic.com/client/installer/steam.deb"
-	get_install_deb $GIMP "https://discord.com/api/download?platform=linux&format=deb"
+	# get_install_deb $GIMP "https://discord.com/api/download?platform=linux&format=deb"
 fi
 
 sudo apt-get --fix-broken install
@@ -81,6 +84,17 @@ sudo mkdir -p ~/.config/awesome
 
 sudo cp -r ./JDE/awesome ~/.config
 sudo cp -r ./JDE/rofi ~/.config
+
+#remove unnecesary .desktops
+
+rm_desk "yelp"
+rm_desk "picom"
+rm_desk "debian-uxterm"
+rm_desk "debian-xterm"
+rm_desk "zutty"
+rm_desk "compton"
+
+#endscript
 
 sudo rm -r JDE
 

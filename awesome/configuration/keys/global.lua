@@ -12,7 +12,7 @@ local globalKeys =
 
   --added by javier
   awful.key({modkey}, 'KP_Insert', function () awful.screen.focus_relative(1) end, {description = 'Focus the next screen', group = 'Screens'}),
-  awful.key({ modkey }, 'Return', function () awful.spawn('konsole') end, { description = 'Open Terminal', group = 'Applications' }),
+  awful.key({ modkey }, 'Return', function () awful.spawn(apps.default.terminal) end, { description = 'Open Terminal', group = 'Applications' }),
   awful.key({modkey}, 'KP_End', awful.tag.viewprev, {description = 'view previous', group = 'tag'}),
   awful.key({modkey}, 'KP_Down', awful.tag.viewnext, {description = 'view next', group = 'tag'}),
 

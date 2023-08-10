@@ -16,22 +16,20 @@ return {
     editor = 'code',
     social = 'discord',
     game = rofi_command,
-    files = 'dolphin',
+    files = 'nemo',
     music = 'youtubemusic' 
   },
 
   -- List of apps to start once on start-up
   run_on_start_up = {
-    --javier
-    'bt-edifier', 
-    'discord --silent',
-    -- 'compton --config ' .. filesystem.get_configuration_dir() .. '/configuration/compton.conf',
-    -- 'nm-applet --indicator', -- wifi
-    'pnmixer', -- shows an audiocontrol applet in systray when installed.
-    -- 'blueberry-tray', -- Bluetooth tray icon
+    'compton --config ' .. filesystem.get_configuration_dir() .. '/configuration/compton.conf',
+    'nm-applet --indicator', -- wifi systray
+    'pnmixer', -- audio systray
+    'blueberry-tray', -- bluetooth systray
     'numlockx on', -- enable numlock
+    'xfce4-power-manager', -- Power manager
     -- '/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)', -- credential manager
-    -- 'xfce4-power-manager', -- Power manager
+
 
     -- Add applications that need to be killed between reloads
     -- to avoid multipled instances, inside the awspawn script
