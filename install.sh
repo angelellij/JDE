@@ -54,8 +54,6 @@ if [ "$BLOAT" = true ]; then
 	get_install_deb $GIMP "https://discord.com/api/download?platform=linux&format=deb"
 fi
 
-sudo systemctl start lightdm
-
 sudo mkdir -p ~/.config/rofi
 sudo mkdir -p ~/.config/nemo
 
@@ -66,3 +64,5 @@ sudo cp -r ./JDE/awesome ~/.config
 sudo cp -r ./JDE/rofi ~/.config
 
 sudo rm -r JDE
+
+sudo systemctl start lightdm
