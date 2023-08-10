@@ -43,7 +43,7 @@ set -x
 
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get install lightdm alacritty nemo awesome fonts-roboto rofi compton lxappearance xbacklight flameshot xfce4-power-manager pnmixer network-manager-gnome policykit-1-gnome --ignore-missing -y
+sudo apt-get install lightdm alacritty nemo awesome fonts-roboto rofi compton lxappearance xbacklight flameshot xfce4-power-manager pnmixer network-manager-gnome policykit-1-gnome -y
 
 if [ "$BLOAT" = true ]; then
 	get_install_deb $CODE "https://go.microsoft.com/fwlink/?LinkID=760868"
