@@ -9,7 +9,7 @@ This is just a desktop environment i made for myself to install on any debian mi
 When doing nano on install.sh change the username variable to your username.
 
 ```
-su
+su -
 apt install git
 git clone https:github.com/angelellij/JDE
 nano ./JDE/install.sh
