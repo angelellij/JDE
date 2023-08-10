@@ -22,7 +22,7 @@ return {
 
   -- List of apps to start once on start-up
   run_on_start_up = {
-    'picom -b --config ~/.config/picom.conf', -- compositor
+    'picom -b --config ~/.config/picom/picom.conf', -- compositor
     'nm-applet --indicator',                  -- wifi systray
     'pnmixer',                                -- audio systray
     'blueberry-tray',                         -- bluetooth systray

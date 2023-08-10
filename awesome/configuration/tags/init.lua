@@ -4,9 +4,7 @@ local icons = require('theme.icons')
 local apps = require('configuration.apps')
 
 awful.layout.layouts = {
-  awful.layout.suit.tile,
-  awful.layout.suit.max,
-  awful.layout.suit.floating
+  awful.layout.suit.tile
 }
 
 local function set_tag(tag, icons)
