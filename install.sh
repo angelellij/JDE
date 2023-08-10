@@ -8,14 +8,14 @@
 BLOAT=true
 
 #If bloat is true you can finetune some apps to not install
-CODE=true
-GITHUB=true
-DISCORD=true
+CODE="code"
+GITHUB="github-desktop"
+DISCORD="discord"
 
-CHROME=true
+CHROME="google-chrome-stable"
 
-STEAM=true
-GIMP=true
+STEAM="steam"
+GIMP=false
 
 
 #Utilities
@@ -24,7 +24,11 @@ get_install_deb() {
     local APP="$1"
     local URL="$2"
 
-    if [ "$APP" = true ]; then
+    if [ "$APP" == false ]; then
+        echo "Skipping."
+    elif ! apt-cache show "$APP" >/dev/null 2>&1; then
+        echo "$APP is already installed."
+    else
         sudo wget -O ~/d.deb "$URL"
         sudo dpkg -i ~/d.deb
         sudo rm ~/d.deb
