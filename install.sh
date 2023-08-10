@@ -46,7 +46,7 @@ su -
 apt-get install sudo
 /sbin/adduser $USERNAME sudo
 
-su $USERNAME
+su - "$USERNAME" -c '
 
 sudo apt-get update
 sudo apt-get upgrade
@@ -72,4 +72,4 @@ sudo rm -p /home/$USERNAME/.config/nemo
 sudo cp -r ./JDE/awesome /home/$USERNAME/.config
 sudo cp -r ./JDE/rofi /home/$USERNAME/.config
 
-sudo rm -r JDE
+sudo rm -r JDE'
