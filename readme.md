@@ -14,11 +14,11 @@ su -
 apt-get install sudo
 /sbin/adduser $USERNAME sudo
 apt install git
-git clone https:github.com/angelellij/JDE
 
 #Install the DE
 su $USERNAME
 cd ~/ #Or cd to /home/$USERNAME
+sudo git clone https:github.com/angelellij/JDE
 sudo nano ./JDE/install.sh #If you want to toggle config
 sudo chmod +x ./JDE/install.sh
 ./JDE/install.sh #No sudo!!!
