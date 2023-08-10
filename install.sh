@@ -26,7 +26,7 @@ get_install_deb() {
 
     if [ "$APP" == false ]; then
         echo "Skipping."
-    elif ! apt-cache show "$APP" >/dev/null 2>&1; then
+    elif dpkg-query -W -f='${Status}' "$APP" 2>/dev/null | grep -q "installed"; then
         echo "$APP is already installed."
     else
         sudo wget -O ~/d.deb "$URL"
@@ -97,6 +97,7 @@ rm_desk "debian-uxterm"
 rm_desk "debian-xterm"
 rm_desk "zutty"
 rm_desk "compton"
+rm_desk "org.gnome.FileRoller"
 
 #endscript
 
