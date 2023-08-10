@@ -40,6 +40,15 @@ rm_desk() {
     sudo rm "/usr/share/applications/${DESK}.desktop"
 }
 
+update_config_files(){
+    local APP="$1"
+
+    sudo mkdir -p "~/.config/${APP}"
+    sudo rm -r "~/.config/${APP}"
+    sudo mkdir -p "~/.config/${APP}"
+    sudo cp -r "./JDE/${APP}" ~/.config
+}
+
 #-------------------------
 #----- END OF CONFIG -----
 #-------------------------
@@ -86,17 +95,9 @@ echo "-------------------------------"
 echo "        DE Config files        "
 echo "-------------------------------"
 
-sudo mkdir -p ~/.config/rofi
-sudo mkdir -p ~/.config/awesome
-
-sudo rm -p ~/.config/rofi
-sudo rm -p ~/.config/awesome
-
-sudo mkdir -p ~/.config/rofi
-sudo mkdir -p ~/.config/awesome
-
-sudo cp -r ./JDE/awesome ~/.config
-sudo cp -r ./JDE/rofi ~/.config
+update_config_files "rofi"
+update_config_files "picom"
+update_config_files "awesome"
 
 #remove unnecesary .desktops
 echo "-------------------------------"
