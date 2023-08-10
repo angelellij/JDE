@@ -71,10 +71,13 @@ fi
 sudo apt-get --fix-broken install
 
 sudo mkdir -p ~/.config/rofi
-sudo mkdir -p ~/.config/nemo
+sudo mkdir -p ~/.config/awesome
 
 sudo rm -p ~/.config/rofi
-sudo rm -p ~/.config/nemo
+sudo rm -p ~/.config/awesome
+
+sudo mkdir -p ~/.config/rofi
+sudo mkdir -p ~/.config/awesome
 
 sudo cp -r ./JDE/awesome ~/.config
 sudo cp -r ./JDE/rofi ~/.config
