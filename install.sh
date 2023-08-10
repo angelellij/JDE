@@ -5,7 +5,6 @@
 #------------------
 
 #Variables
-USERNAME="javier"
 BLOAT=true
 
 #If bloat is true you can finetune some apps to not install
@@ -28,9 +27,9 @@ get_install_deb() {
     local URL="$2"
 
     if [ "$APP" = true ]; then
-        sudo wget -O "/home/$USERNAME/d.deb" "$URL"
-        sudo dpkg -i "/home/$USERNAME/d.deb"
-        sudo rm "/home/$USERNAME/d.deb"
+        sudo wget -O "~/d.deb" "$URL"
+        sudo dpkg -i "~/d.deb"
+        sudo rm "~/d.deb"
     fi
 }
 
@@ -41,12 +40,6 @@ get_install_deb() {
 #Start of the script
 
 set -x
-
-su -
-apt-get install sudo
-/sbin/adduser $USERNAME sudo
-
-su - "$USERNAME" -c '
 
 sudo apt-get update
 sudo apt-get upgrade
@@ -63,13 +56,13 @@ fi
 
 sudo systemctl start lightdm
 
-sudo mkdir -p /home/$USERNAME/.config/rofi
-sudo mkdir -p /home/$USERNAME/.config/nemo
+sudo mkdir -p ~/.config/rofi
+sudo mkdir -p ~/.config/nemo
 
-sudo rm -p /home/$USERNAME/.config/rofi
-sudo rm -p /home/$USERNAME/.config/nemo
+sudo rm -p ~/.config/rofi
+sudo rm -p ~/.config/nemo
 
-sudo cp -r ./JDE/awesome /home/$USERNAME/.config
-sudo cp -r ./JDE/rofi /home/$USERNAME/.config
+sudo cp -r ./JDE/awesome ~/.config
+sudo cp -r ./JDE/rofi ~/.config
 
-sudo rm -r JDE'
+sudo rm -r JDE
