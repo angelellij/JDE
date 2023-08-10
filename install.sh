@@ -27,9 +27,9 @@ get_install_deb() {
     local URL="$2"
 
     if [ "$APP" = true ]; then
-        sudo wget -O "~/d.deb" "$URL"
-        sudo dpkg -i "~/d.deb"
-        sudo rm "~/d.deb"
+        sudo wget -O ~/d.deb "$URL"
+        sudo dpkg -i ~/d.deb
+        sudo rm ~/d.deb
     fi
 }
 
