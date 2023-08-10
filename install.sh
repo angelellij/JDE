@@ -45,8 +45,9 @@ rm_desk() {
 #-------------------------
 
 #Start of the script
-
-set -x
+echo "--------------------------------"
+echo "Installing necessary packages..."
+echo "--------------------------------"
 
 sudo apt-get update
 sudo apt-get upgrade
@@ -66,6 +67,10 @@ sudo apt-get install network-manager-gnome -f
 sudo apt-get install policykit-1-gnome -f
 sudo apt-get --fix-broken install
 
+echo "-------------------------------"
+echo "Installing optional packages..."
+echo "-------------------------------"
+
 if [ "$BLOAT" = true ]; then
 	get_install_deb $CODE "https://go.microsoft.com/fwlink/?LinkID=760868"
 	get_install_deb $GITHUB "https://github.com/shiftkey/desktop/releases/download/release-3.2.7-linux2/GitHubDesktop-linux-amd64-3.2.7-linux2.deb"
@@ -76,6 +81,10 @@ if [ "$BLOAT" = true ]; then
 fi
 
 sudo apt-get --fix-broken install
+
+echo "-------------------------------"
+echo "        DE Config files        "
+echo "-------------------------------"
 
 sudo mkdir -p ~/.config/rofi
 sudo mkdir -p ~/.config/awesome
@@ -90,6 +99,9 @@ sudo cp -r ./JDE/awesome ~/.config
 sudo cp -r ./JDE/rofi ~/.config
 
 #remove unnecesary .desktops
+echo "-------------------------------"
+echo " Removing unnecesary .desktop  "
+echo "-------------------------------"
 
 rm_desk "yelp"
 rm_desk "picom"
@@ -101,6 +113,11 @@ rm_desk "org.gnome.FileRoller"
 
 #endscript
 
+echo "-------------------------------"
+echo "       Finishing touches       "
+echo "-------------------------------"
+
 sudo rm -r JDE
 
 sudo systemctl start lightdm
+sudo systemctl restart lightdm
