@@ -57,6 +57,7 @@ sudo apt-get install xfce4-power-manager -f
 sudo apt-get install pnmixer -f
 sudo apt-get install network-manager-gnome -f
 sudo apt-get install policykit-1-gnome -f
+sudo apt-get --fix-broken install
 
 if [ "$BLOAT" = true ]; then
 	get_install_deb $CODE "https://go.microsoft.com/fwlink/?LinkID=760868"
@@ -66,6 +67,8 @@ if [ "$BLOAT" = true ]; then
 	get_install_deb $STEAM "https://cdn.akamai.steamstatic.com/client/installer/steam.deb"
 	get_install_deb $GIMP "https://discord.com/api/download?platform=linux&format=deb"
 fi
+
+sudo apt-get --fix-broken install
 
 sudo mkdir -p ~/.config/rofi
 sudo mkdir -p ~/.config/nemo
