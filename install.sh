@@ -35,18 +35,30 @@ get_install_deb() {
     fi
 }
 
+get_install_apt() {
+    local APP="$1"
+
+    if [ "$APP" == false ]; then
+        echo "Skipping."
+    else
+        sudo apt install $APP
+    fi
+}
+
 rm_desk() {
     local DESK="$1"
-    sudo rm "/usr/share/applications/${DESK}.desktop"
+    if [ -e "/usr/share/applications/${DESK}.desktop" ]; then
+        sudo rm "/usr/share/applications/${DESK}.desktop"
+    fi
 }
 
 update_config_files(){
     local APP="$1"
-
-    sudo mkdir -p "~/.config/${APP}"
-    sudo rm -r "~/.config/${APP}"
-    sudo mkdir -p "~/.config/${APP}"
-    sudo cp -r "./JDE/${APP}" ~/.config
+    if [ -d ~/.config ]; then
+        rm -r ~/.config/"${APP}"
+    fi
+    mkdir -p ~/.config/"${APP}"
+    cp -r ./JDE/"${APP}" ~/.config
 }
 
 #-------------------------
@@ -60,21 +72,21 @@ echo "--------------------------------"
 
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get install lightdm -f 
-sudo apt-get install alacritty -f 
-sudo apt-get install nemo -f
-sudo apt-get install awesome -f
-sudo apt-get install fonts-roboto -f
-sudo apt-get install rofi -f
-sudo apt-get install compton -f
-sudo apt-get install lxappearance -f
-sudo apt-get install xbacklight -f
-sudo apt-get install flameshot -f
-sudo apt-get install xfce4-power-manager -f
-sudo apt-get install pnmixer -f
-sudo apt-get install network-manager-gnome -f
-sudo apt-get install policykit-1-gnome -f
-sudo apt-get --fix-broken install
+sudo apt-get install lightdm -f                     #Login Screen
+sudo apt-get install alacritty -f                   #Terminal
+sudo apt-get install nemo -f                        #Files
+sudo apt-get install awesome -f                     #Window Manager
+sudo apt-get install fonts-roboto -f                #Font
+sudo apt-get install rofi -f                        #Apps menu
+sudo apt-get install picom -f                       #Compositor
+sudo apt-get install lxappearance -f                #Theme manager
+sudo apt-get install xbacklight -f                  
+sudo apt-get install flameshot -f                   #Screenshot taker
+sudo apt-get install xfce4-power-manager -f         #Power manager for laptops
+sudo apt-get install pnmixer -f                     #Audio for systray
+sudo apt-get install network-manager-gnome -f       #Network mangaer
+sudo apt-get install policykit-1-gnome -f           #PolKit
+sudo apt-get --fix-broken install                   #Install dependecies that were not installed
 
 echo "-------------------------------"
 echo "Installing optional packages..."
@@ -86,31 +98,37 @@ if [ "$BLOAT" = true ]; then
 	get_install_deb $DISCORD "https://discord.com/api/download?platform=linux&format=deb"
 	get_install_deb $CHROME "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
 	get_install_deb $STEAM "https://cdn.akamai.steamstatic.com/client/installer/steam.deb"
-	# get_install_deb $GIMP "https://discord.com/api/download?platform=linux&format=deb"
+	get_install_apt $GIMP
 fi
 
 sudo apt-get --fix-broken install
+
+if [ ! -d ~/.config ]; then
+    mkdir -p ~/.config/"${APP}"
+fi
+sudo chown -R $USER:$USER ~/.config
 
 echo "-------------------------------"
 echo "        DE Config files        "
 echo "-------------------------------"
 
-update_config_files "rofi"
-update_config_files "picom"
-update_config_files "awesome"
+update_config_files "rofi"              #Apps menu
+update_config_files "picom"             #Compositor
+update_config_files "awesome"           #Window Manager
 
 #remove unnecesary .desktops
+#The apps are necessary but users are not going to manually run them
 echo "-------------------------------"
 echo " Removing unnecesary .desktop  "
 echo "-------------------------------"
 
-rm_desk "yelp"
-rm_desk "picom"
-rm_desk "debian-uxterm"
-rm_desk "debian-xterm"
-rm_desk "zutty"
-rm_desk "compton"
-rm_desk "org.gnome.FileRoller"
+rm_desk "yelp"                      #Help app
+rm_desk "picom"                     #Compositor
+rm_desk "debian-uxterm"             #Terminal
+rm_desk "debian-xterm"              #Terminal
+rm_desk "zutty"                     
+rm_desk "compton"                   #Compositor
+rm_desk "org.gnome.FileRoller"      #Archive Manager (zip, tar)
 
 #endscript
 
