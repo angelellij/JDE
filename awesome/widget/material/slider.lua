@@ -13,6 +13,7 @@ local mat_colors = require('theme.mat-colors')
 
 local mat_slider = {mt = {}}
 
+
 local properties = {
   read_only = false
 }
@@ -83,8 +84,8 @@ local function new(args)
     forced_height = dpi(6),
     paddings = 0,
     shape = gears.shape.rounded_rect,
-    background_color = beautiful.background.hue_800,
-    color = beautiful.primary.hue_500,
+    background_color = '#fffffff00',
+    color = '#fffffff00',
     widget = wibox.widget.progressbar
   }
 
@@ -92,11 +93,11 @@ local function new(args)
     wibox.widget {
     forced_height = dpi(8),
     bar_shape = gears.shape.rounded_rect,
-    bar_height = 0,
-    bar_color = beautiful.primary.hue_500,
-    handle_color = beautiful.primary.hue_300,
+    bar_height = 2,
+    bar_color = '#fffffff00',
+    handle_color = '#fffffff00',
     handle_shape = gears.shape.circle,
-    handle_border_color = '#00000012',
+    handle_border_color = '#ffffff',
     handle_border_width = dpi(3),
     value = 25,
     widget = wibox.widget.slider

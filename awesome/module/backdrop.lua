@@ -40,7 +40,7 @@ local function backdrop(c)
     c.backdrop = wibox {ontop = true, bg = '#ff0000', type = 'splash'}
     c.backdrop:buttons(
       awful.util.table.join(
-        awful.button(n(
+        awful.button(
           {},
           1,
           function()

@@ -10,7 +10,6 @@ return {
   default = {
     terminal = 'alacritty',
     rofi = rofi_command,
-    quake = 'alacritty',
     screenshot = 'flameshot gui -p ~/Pictures/Screenshots/',
     browser = 'google-chrome',
     editor = 'code',
@@ -22,12 +21,18 @@ return {
 
   -- List of apps to start once on start-up
   run_on_start_up = {
+    
     'picom -b --config ~/.config/picom/picom.conf', -- compositor
     'nm-applet --indicator',                  -- wifi systray
-    'pnmixer',                                -- audio systray
-    'blueberry-tray',                         -- bluetooth systray
+    -- 'blueberry-tray',                         -- bluetooth systray
+    'blueman-applet',
     'numlockx on',                            -- enable numlock
     'xfce4-power-manager',                    -- power manager
+    
+    --javier
+    -- 'bt-edifier', 
+    -- 'discord --silent',
+
     -- '/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)', -- credential manager
 
 

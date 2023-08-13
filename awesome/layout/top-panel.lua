@@ -5,11 +5,16 @@ local wibox = require('wibox')
 local clickable_container = require('widget.material.clickable-container')
 local dpi = require('beautiful').xresources.apply_dpi
 
-local menu_button = require("layout.menu_button")
+local menu_button = require("widget.rofi")
 local TagList = require('widget.tag-list')
-local clock = require("layout.clock")
-local systray = require("layout.systray")
-local layout_icon = require("layout.layout_button")
+local clock = require("widget.clock")
+local systray = require("widget.systray")
+
+local wifi = require("widget.wifi")
+local bat = require("widget.battery")
+local vol = require("widget.volume")
+local blue = require("widget.bluetooth")
+
 
 local empty_widget = wibox.widget {}
 
@@ -50,7 +55,10 @@ panel:setup {
   {
     layout = wibox.layout.fixed.horizontal,
     systray,
-    -- layout_icon(s),
+    blue,
+    wifi,
+    vol,
+    bat,
     clock,
   }
 }

@@ -47,22 +47,7 @@ local globalKeys =
   awful.key({ modkey }, "r", function () awful.spawn("rofi -show drun") end, {description = "run rofi", group = "launcher"}),
   awful.key({altkey}, 'space', function () awful.spawn("rofi -show drun") end, {description = "run rofi", group = "launcher"}),
 
-  -- awful.key(
-  --   {modkey, 'Shift'},
-  --   'r',
-  --   function()
-  --     awful.spawn('reboot')
-  --   end,
-  --   {description = 'Reboot Computer', group = 'awesome'}
-  -- ),
-  -- awful.key(
-  --   {modkey, 'Shift'},
-  --   's',
-  --   function()
-  --     awful.spawn('shutdown now')
-  --   end,
-  --   {description = 'Shutdown Computer', group = 'awesome'}
-  -- ),
+
   awful.key(
     {modkey, 'Shift'},
     'l',
@@ -226,14 +211,6 @@ local globalKeys =
     {description = 'restore minimized', group = 'client'}
   ),
   -- Dropdown application
-  awful.key(
-    {modkey},
-    'z',
-    function()
-      _G.toggle_quake()
-    end,
-    {description = 'dropdown application', group = 'launcher'}
-  ),
   -- Widgets popups
   --[[awful.key(
     {altkey},

@@ -114,6 +114,16 @@ watch(
     end
     charge = charge / capacity
 
+    -- if capacity == 0 then
+    --   if widget then
+    --     widget:emit_signal('widget::layout_changed')
+    --     widget = nil
+    --     return
+    --   end
+    -- end
+
+
+
     if (charge >= 0 and charge < 15) then
       if status ~= 'Charging' and os.difftime(os.time(), last_battery_check) > 300 then
         -- if 5 minutes have elapsed since the last warning
