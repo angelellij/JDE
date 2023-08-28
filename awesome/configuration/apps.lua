@@ -10,7 +10,7 @@ return {
   default = {
     terminal = 'alacritty',
     rofi = rofi_command,
-    screenshot = 'flameshot gui -p ~/Pictures/Screenshots/',
+    screenshot = 'flameshot gui -p ~/Pictures/',
     browser = 'google-chrome',
     editor = 'code',
     social = 'discord',

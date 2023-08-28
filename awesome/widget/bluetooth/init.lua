@@ -3,6 +3,8 @@ local wibox = require('wibox')
 local gears = require('gears')
 local clickable_container = require('widget.material.clickable-container')
 
+local clic_command = "blueman-manager"
+
 local PATH_TO_ICONS = os.getenv('HOME') .. '/.config/awesome/widget/bluetooth/icons/'
 local dpi = require('beautiful').xresources.apply_dpi
 
@@ -20,7 +22,7 @@ local bluetooth_widget =
 local bluetooth = clickable_container(wibox.container.margin(bluetooth_widget, dpi(8), dpi(8), dpi(8), dpi(8)))
 
 bluetooth:buttons(
-  gears.table.join( awful.button( {}, 1, nil, function() awful.spawn('blueman-manager') end ) )
+  gears.table.join( awful.button( {}, 1, nil, function() awful.spawn(clic_command) end ) )
 )
 
 return bluetooth

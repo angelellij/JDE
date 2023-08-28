@@ -83,8 +83,9 @@ sudo apt-get install lxappearance -f                #Theme manager
 sudo apt-get install xbacklight -f                  
 sudo apt-get install flameshot -f                   #Screenshot taker
 sudo apt-get install xfce4-power-manager -f         #Power manager for laptops
-sudo apt-get install pnmixer -f                     #Audio for systray
-sudo apt-get install network-manager-gnome -f       #Network mangaer
+sudo apt-get install pavucontrol -f                 #Audio GUI
+sudo apt-get install blueman-manager -f             #Bluetooth GUI
+sudo apt-get install nm-connection-editor -f       #Network mangaer 
 sudo apt-get install policykit-1-gnome -f           #PolKit
 sudo apt-get --fix-broken install                   #Install dependecies that were not installed
 

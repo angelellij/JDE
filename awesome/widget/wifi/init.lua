@@ -1,144 +1,110 @@
--------------------------------------------------
--- Battery Widget for Awesome Window Manager
--- Shows the battery status using the ACPI tool
--- More details could be found here:
--- https://github.com/streetturtle/awesome-wm-widgets/tree/master/battery-widget
-
--- @author Pavel Makhov
--- @copyright 2017 Pavel Makhov
--------------------------------------------------
-
-local awful = require('awful')
-local watch = require('awful.widget.watch')
-local wibox = require('wibox')
+local awful = require("awful")
+local wibox = require("wibox")
+local gears = require("gears")
+local beautiful = require('beautiful')
 local clickable_container = require('widget.material.clickable-container')
-local gears = require('gears')
-local dpi = require('beautiful').xresources.apply_dpi
+local dpi = beautiful.xresources.apply_dpi
 
-local HOME = os.getenv('HOME')
-local PATH_TO_ICONS = HOME .. '/.config/awesome/widget/wifi/icons/'
-local interface = 'wlp3s0'
-local connected = false
-local essid = 'N/A'
+local PATH_TO_ICONS = os.getenv('HOME').. '/.config/awesome/widget/wifi/icons/'
+local icon_path = PATH_TO_ICONS .. 'wifi.svg'
 
-local data_textbox = wibox.widget {
-  font = 'Roboto 12',
-  widget = wibox.widget.textbox
-}
+-- Define paths and commands
+local clic_command = "nm-connection-editor"
+
+-- Determine whether to use WiFi or wired interface
+local interface_name = "wlan0"  -- Replace with your actual WiFi interface name
+local wifi_connection = false
 
 local function format_speed(speed_bytes)
   local megabytes = speed_bytes / (1024 * 1024)
   return string.format("%.0f", megabytes)
 end
 
-local widget =
-  wibox.widget {
-  {
-    id = 'icon',
-    widget = wibox.widget.imagebox,
-    resize = true
-  },
-  widget_button,
-  layout = wibox.layout.align.horizontal
-}
-
-local widget_with_margins = wibox.widget {
-  {
-      widget_button,
-      top = dpi(8),
-      bottom = dpi(8),
-      left = dpi(8),
-      right = dpi(4),
-      widget = wibox.container.margin
-  },
-  layout = wibox.layout.align.horizontal
-}
-
-local widget_button = clickable_container(wibox.container.margin(widget, dpi(0), dpi(0), dpi(0), dpi(0)))
-widget_button:buttons(
-  gears.table.join(
-    awful.button( {}, 1, nil, function() awful.spawn('wicd-client -n') end )
-  )
-)
--- Alternative to naughty.notify - tooltip. You can compare both and choose the preferred one
-awful.tooltip(
-  {
-    objects = {widget_button},
-    mode = 'outside',
-    align = 'right',
-    timer_function = function()
-      if connected then
-        return 'Connected to ' .. essid
-      else
-        return 'Wireless network is disconnected'
-      end
-    end,
-    preferred_positions = {'right', 'left', 'top', 'bottom'},
-    margin_leftright = dpi(8),
-    margin_topbottom = dpi(8)
-  }
-)
-
-local function grabText()
-  if connected then
-    awful.spawn.easy_async(
-      'iw dev ' .. interface .. ' link',
-      function(stdout)
-        essid = stdout:match('SSID:(.-)\n')
-        if (essid == nil) then
-          essid = 'N/A'
-        end
-      end
-    )
-  end
+-- Function to get the name of the wired network interface
+local function getWiredInterfaceName()
+  local interfaces = io.popen("ip link | awk -F': ' '/^[0-9]+: [^lo]/ {print $2}'"):read("*a")
+  local interface_name = interfaces:match("%S+")
+  return interface_name
 end
 
-watch(
-  "awk 'NR==3 {printf \"%3.0f\" ,($3/70)*100}' /proc/net/wireless",
-  5,
-  function(_, stdout)
-    local widgetIconName = 'wifi-strength'
-    local wifi_strength = tonumber(stdout)
-    if (wifi_strength ~= nil) then
-      connected = true
-      -- Update popup text
-      local wifi_strength_rounded = math.floor(wifi_strength / 25 + 0.5)
-      widgetIconName = widgetIconName .. '-' .. wifi_strength_rounded
-      widget.icon:set_image(PATH_TO_ICONS .. widgetIconName .. '.svg')
-      local download_speed = io.popen('cat /sys/class/net/' .. wired_interface .. '/statistics/rx_bytes'):read('*number')
-      local upload_speed = io.popen('cat /sys/class/net/' .. wired_interface .. '/statistics/tx_bytes'):read('*number')
+interface_name = getWiredInterfaceName()
 
-      
-      data_textbox:set_text('Download: ' .. format_speed(download_speed))
-    else
-      connected = false
-      widget.icon:set_image(PATH_TO_ICONS .. widgetIconName .. '-off' .. '.svg')
-      local download_speed = io.popen('cat /sys/class/net/' .. 'enp6s0' .. '/statistics/rx_bytes'):read('*number')
-      local upload_speed = io.popen('cat /sys/class/net/' .. 'enp6s0' .. '/statistics/tx_bytes'):read('*number')
-      data_textbox:set_text( format_speed(download_speed) .. ' / ' .. format_speed(upload_speed))  -- You need to implement `format_speed` function
-    end
-    if (connected and (essid == 'N/A' or essid == nil)) then
-      grabText()
-    end
-    collectgarbage('collect')
-  end,
-  widget
-)
+-- Create the icon widget
+local icon = wibox.widget {
+  {
+      widget = wibox.widget.imagebox,
+      image = icon_path,
+      resize = true,
+  },
+  widget = wibox.container.margin,
+}
 
-widget:connect_signal(
-  'mouse::enter',
-  function()
-    grabText()
+-- Create the text widget
+local space = wibox.widget {
+  id = "space",
+  widget = wibox.widget.textbox,
+  text = "  ",
+  align = "center",
+  font = 'Roboto 12'
+}
+
+-- Create the text widget
+local text_widget = wibox.widget {
+  id = "text",
+  widget = wibox.widget.textbox,
+  text = "N/A",
+  align = "center",
+  font = 'Roboto 12'
+}
+
+-- Combine the icon and text widgets
+local wifi_widget = wibox.widget {
+  icon,
+  space,
+  text_widget,
+  layout = wibox.layout.fixed.horizontal
+}
+
+-- Add tooltip on hover
+awful.tooltip {
+    objects = { wifi_widget },
+    mode = "outside",
+    timer_function = function()
+      local tooltip_text = ""
+
+      if wifi_connection then
+          awful.spawn.easy_async("bash -c 'iwgetid -r'", function(stdout)
+              local current_wifi = stdout:gsub("\n", "")
+              local available_wifis = "Available WiFi List"  -- Replace with actual available WiFi list
+
+              tooltip_text = "Current: " .. current_wifi .. "\n" .. available_wifis
+          end)
+      else
+          local wired_info = "Wired Network"
+          tooltip_text = wired_info
+      end
+
+      return tooltip_text
+    end,
+    fg = '#ffffff'
+}
+
+-- Set up click action
+wifi_widget:connect_signal("button::release", function()
+    awful.spawn(clic_command)
+end)
+
+-- Create a timer to update the text
+local timer = gears.timer {
+  timeout = 30,
+  call_now = true,
+  autostart = true,
+  callback = function()
+    local download_speed = io.popen('cat /sys/class/net/' .. interface_name .. '/statistics/rx_bytes'):read('*number')
+    local upload_speed = io.popen('cat /sys/class/net/' .. interface_name .. '/statistics/tx_bytes'):read('*number')
+    text_widget:set_text( format_speed(download_speed) .. ' / ' .. format_speed(upload_speed))
   end
-)
+}
 
-local net_widget =
-  wibox.widget {
-    widget_button,
-    widget_with_margins,
-    data_textbox,
-
-    layout = wibox.layout.fixed.horizontal
-  }
-
-return net_widget
+local wifi_container = clickable_container(wibox.container.margin(wifi_widget, dpi(8), dpi(8), dpi(8), dpi(8)))
+return wifi_container
