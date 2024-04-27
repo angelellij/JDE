@@ -74,7 +74,6 @@ echo "--------------------------------"
 
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get install -y xfce4 xfce4-goodies         #Xfce Utilities
 sudo apt-get install lightdm -f                     #Login Screen
 sudo apt-get install alacritty -f                   #Terminal
 sudo apt-get install nemo -f                        #Files
