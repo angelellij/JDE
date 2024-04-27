@@ -170,7 +170,7 @@ echo "-------------------------------"
 echo " NoDisplay unnecesary .desktop "
 echo "-------------------------------"
 
-input_file="~/NoDisplay.txt" #.desktop files to not display on rofi menu
+input_file="JDE/NoDisplay.txt" #.desktop files to not display on rofi menu
 
 add_NoDisplay() {
     local desktop_file="$1"
