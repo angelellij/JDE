@@ -100,6 +100,13 @@ echo "-------------------------------"
 sudo apt-get --fix-broken install                   #Install dependecies that were not installed
 
 echo "-------------------------------"
+echo " Remove unnecesary.."
+echo "-------------------------------"
+
+sudo apt remove xfce4-notifyd
+sudo apt autoremove
+
+echo "-------------------------------"
 echo "Installing optional packages..."
 echo "-------------------------------"
 
@@ -175,14 +182,14 @@ input_file="JDE/NoDisplay.txt" #.desktop files to not display on rofi menu
 add_NoDisplay() {
     local desktop_file="$1"
 
-    if grep -q "^Rofi=false" "$desktop_file"; then
-        sed -i 's/^Rofi=false/Rofi=true/' "$desktop_file"
-        echo "Changed Rofi from false to true in $desktop_file"
-    elif ! grep -q "^Rofi=true" "$desktop_file"; then
-        echo "Rofi=true" >> "$desktop_file"
-        echo "Added Rofi=true to $desktop_file"
+    if grep -q "^Rofi=true" "$desktop_file"; then
+        sed -i 's/^Rofi=true/Rofi=false/' "$desktop_file"
+        echo "Changed Rofi from true to false in $desktop_file"
+    elif ! grep -q "^Rofi=false" "$desktop_file"; then
+        echo "Rofi=false" >> "$desktop_file"
+        echo "Added Rofi=false to $desktop_file"
     else
-        echo "NoDisplay already exists in $desktop_file"
+        echo "Rofi=false already exists in $desktop_file"
     fi
 }
 
