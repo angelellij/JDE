@@ -87,7 +87,7 @@ sudo apt-get install xbacklight -f                  #Brightess
 sudo apt-get install flameshot -f                   #Screenshot taker
 sudo apt-get install xfce4-power-manager -f         #Power manager for laptops
 sudo apt-get install pavucontrol -f                 #Audio GUI
-sudo apt-get install blueman-manager -f             #Bluetooth GUI
+sudo apt-get install blueman -f             #Bluetooth GUI
 sudo apt-get install nm-connection-editor -f        #Network manager 
 sudo apt-get install policykit-1-gnome -f           #PolKit
 sudo apt-get install dunst -f                       #Notifications
@@ -170,7 +170,6 @@ echo "-------------------------------"
 echo "         Add .desktop          "
 echo "-------------------------------"
 
-add_desktop_file "Pavucontrol"
 add_desktop_file "RofiWifi"
 
 echo "-------------------------------"
@@ -182,14 +181,14 @@ input_file="JDE/NoDisplay.txt" #.desktop files to not display on rofi menu
 add_NoDisplay() {
     local desktop_file="$1"
 
-    if grep -q "^Rofi=true" "$desktop_file"; then
-        sed -i 's/^Rofi=true/Rofi=false/' "$desktop_file"
-        echo "Changed Rofi from true to false in $desktop_file"
-    elif ! grep -q "^Rofi=false" "$desktop_file"; then
-        echo "Rofi=false" >> "$desktop_file"
-        echo "Added Rofi=false to $desktop_file"
+    if grep -q "^NoDisplay=false" "$desktop_file"; then
+        sed -i 's/^NoDisplay=false/NoDisplay=true/' "$desktop_file"
+        echo "Changed NoDisplay from false to true in $desktop_file"
+    elif ! grep -q "^NoDisplay=true" "$desktop_file"; then
+        echo "NoDisplay=true" >> "$desktop_file"
+        echo "Added NoDisplay=true to $desktop_file"
     else
-        echo "Rofi=false already exists in $desktop_file"
+        echo "NoDisplay=true already exists in $desktop_file"
     fi
 }
 
