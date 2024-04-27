@@ -2,11 +2,11 @@ Work in progress...
 
 ## **What is JDE**
 
-This is just a desktop environment i made for myself to install on any debian minimal installation. It uses awesome as a WM.
+This is just a desktop environment I made for myself to install on any debian minimal installation. It uses i3 as a WM.
 
 ## **Installation**
 
-Run the following commands after installing a minimal debian installation. BEWARE: Running this on an already running app may break some functionality.
+Run the following commands after installing a minimal debian installation. BEWARE: Running this on an already running app will probably break some functionality.
 
 ```
 #Get SUDO and GIT

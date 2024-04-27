@@ -13,9 +13,12 @@ GITHUB="github-desktop"
 DISCORD="discord"
 
 CHROME="google-chrome-stable"
+FIREFOX="firefox-esr"
 
 STEAM="steam"
-GIMP=false
+GIMP="gimp"
+OBS="obs-studio"
+
 
 
 #Utilities
@@ -45,12 +48,6 @@ get_install_apt() {
     fi
 }
 
-rm_desk() {
-    local DESK="$1"
-    if [ -e "/usr/share/applications/${DESK}.desktop" ]; then
-        sudo rm "/usr/share/applications/${DESK}.desktop"
-    fi
-}
 
 update_config_files(){
     local APP="$1"
@@ -72,21 +69,29 @@ echo "--------------------------------"
 
 sudo apt-get update
 sudo apt-get upgrade
+sudo apt-get install -y xfce4 xfce4-goodies         #Xfce Utilities
 sudo apt-get install lightdm -f                     #Login Screen
 sudo apt-get install alacritty -f                   #Terminal
 sudo apt-get install nemo -f                        #Files
-sudo apt-get install awesome -f                     #Window Manager
+sudo apt-get install i3 -f                          #Window Manager
 sudo apt-get install fonts-roboto -f                #Font
 sudo apt-get install rofi -f                        #Apps menu
-sudo apt-get install picom -f                       #Compositor
+# sudo apt-get install picom -f                       #Compositor
 sudo apt-get install lxappearance -f                #Theme manager
-sudo apt-get install xbacklight -f                  
+sudo apt-get install xbacklight -f                  #Brightess
 sudo apt-get install flameshot -f                   #Screenshot taker
 sudo apt-get install xfce4-power-manager -f         #Power manager for laptops
 sudo apt-get install pavucontrol -f                 #Audio GUI
 sudo apt-get install blueman-manager -f             #Bluetooth GUI
-sudo apt-get install nm-connection-editor -f       #Network mangaer 
+sudo apt-get install nm-connection-editor -f        #Network manager 
 sudo apt-get install policykit-1-gnome -f           #PolKit
+sudo apt-get install dunst -f                       #Notifications
+sudo apt-get install wmctrl -f                      #Utility
+
+echo "-------------------------------"
+echo "Installing dependencies.."
+echo "-------------------------------"
+
 sudo apt-get --fix-broken install                   #Install dependecies that were not installed
 
 echo "-------------------------------"
@@ -100,8 +105,12 @@ if [ "$BLOAT" = true ]; then
 	get_install_deb $CHROME "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
 	get_install_deb $STEAM "https://cdn.akamai.steamstatic.com/client/installer/steam.deb"
 	get_install_apt $GIMP
+    get_install_apt $FIREFOX
 fi
 
+echo "-------------------------------"
+echo "Installing dependencies.."
+echo "-------------------------------"
 sudo apt-get --fix-broken install
 
 if [ ! -d ~/.config ]; then
@@ -113,31 +122,79 @@ echo "-------------------------------"
 echo "        DE Config files        "
 echo "-------------------------------"
 
-update_config_files "rofi"              #Apps menu
-update_config_files "picom"             #Compositor
-update_config_files "awesome"           #Window Manager
+update_config_files "dunst"          #Notifications
+update_config_files "i3"             #Window Manager
+update_config_files "rofi"           #Apps menu
 
-#remove unnecesary .desktops
-#The apps are necessary but users are not going to manually run them
 echo "-------------------------------"
-echo " Removing unnecesary .desktop  "
+echo " .sh files add exec permission "
 echo "-------------------------------"
 
-rm_desk "yelp"                      #Help app
-rm_desk "picom"                     #Compositor
-rm_desk "debian-uxterm"             #Terminal
-rm_desk "debian-xterm"              #Terminal
-rm_desk "zutty"                     
-rm_desk "compton"                   #Compositor
-rm_desk "org.gnome.FileRoller"      #Archive Manager (zip, tar)
+add_exec_permission_to_sh() {
+    local directory="$1"
 
-#endscript
+    # Check if directory argument is provided
+    if [ -z "$directory" ]; then
+        echo "Usage: add_exec_permission_to_sh <directory>"
+        return 1
+    fi
+
+    # Check if directory exists
+    if [ ! -d "$directory" ]; then
+        echo "Directory '$directory' not found."
+        return 1
+    fi
+
+    # Add executable permission to .sh files in the directory recursively
+    find "$directory" -type f -name "*.sh" -exec chmod +x {} \;
+
+    echo "Executable permission added to .sh files in '$directory'."
+}
+
+add_exec_permission_to_sh ".config/rofi"
+add_exec_permission_to_sh ".config/dunst"
+
+echo "-------------------------------"
+echo " NoDisplay unnecesary .desktop "
+echo "-------------------------------"
+
+input_file="NoDisplay.txt" #.desktop files to not display on rofi menu
+
+add_NoDisplay() {
+    local desktop_file="$1"
+
+    if grep -q "^Rofi=false" "$desktop_file"; then
+        sed -i 's/^Rofi=false/Rofi=true/' "$desktop_file"
+        echo "Changed Rofi from false to true in $desktop_file"
+    elif ! grep -q "^Rofi=true" "$desktop_file"; then
+        echo "Rofi=true" >> "$desktop_file"
+        echo "Added Rofi=true to $desktop_file"
+    else
+        echo "NoDisplay already exists in $desktop_file"
+    fi
+}
+
+if [ ! -f "$input_file" ]; then
+    echo "Input file $input_file not found"
+    exit 1
+fi
+
+while IFS= read -r line || [[ -n "$line" ]]; do
+    desktop_file="/usr/share/applications/$line"
+    if [ -f "$desktop_file" ]; then
+        add_NoDisplay "$desktop_file"
+    else
+        echo "$desktop_file not found"
+    fi
+done < "$input_file"
 
 echo "-------------------------------"
 echo "       Finishing touches       "
 echo "-------------------------------"
 
-sudo rm -r JDE
+# sudo rm -r JDE
+
+xsetroot -solid "#202124"
 
 sudo systemctl start lightdm
 sudo systemctl restart lightdm
