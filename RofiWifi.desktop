@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Wifi settings
+Comment=Rofi Wifi
+Exec=.config/rofi/wifi.sh
+Icon=org.xfce.settings.accessibility
+Terminal=false
+Type=Application
+X-XfcePluggable=true
+X-XfceHelpPage=accessibility
+Categories=XFCE;GTK;Settings;DesktopSettings;X-XFCE-SettingsDialog;X-XFCE-SystemSettings;

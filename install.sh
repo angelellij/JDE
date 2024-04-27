@@ -58,6 +58,11 @@ update_config_files(){
     cp -r ./JDE/"${APP}" ~/.config
 }
 
+add_desktop_file(){
+    local APP="$1"
+    cp -r ./JDE/"${APP}.desktop" /usr/share/applications
+}
+
 #-------------------------
 #----- END OF CONFIG -----
 #-------------------------
@@ -153,6 +158,13 @@ add_exec_permission_to_sh() {
 
 add_exec_permission_to_sh ".config/rofi"
 add_exec_permission_to_sh ".config/dunst"
+
+echo "-------------------------------"
+echo "         Add .desktop          "
+echo "-------------------------------"
+
+add_desktop_file "Pavucontrol"
+add_desktop_file "Pavucontrol"
 
 echo "-------------------------------"
 echo " NoDisplay unnecesary .desktop "
