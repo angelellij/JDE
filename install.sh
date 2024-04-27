@@ -60,7 +60,7 @@ update_config_files(){
 
 add_desktop_file(){
     local APP="$1"
-    cp -r ./JDE/"${APP}.desktop" /usr/share/applications
+    sudo cp -r ./JDE/"${APP}".desktop /usr/share/applications
 }
 
 #-------------------------
@@ -164,13 +164,13 @@ echo "         Add .desktop          "
 echo "-------------------------------"
 
 add_desktop_file "Pavucontrol"
-add_desktop_file "Pavucontrol"
+add_desktop_file "RofiWifi"
 
 echo "-------------------------------"
 echo " NoDisplay unnecesary .desktop "
 echo "-------------------------------"
 
-input_file="NoDisplay.txt" #.desktop files to not display on rofi menu
+input_file="~/NoDisplay.txt" #.desktop files to not display on rofi menu
 
 add_NoDisplay() {
     local desktop_file="$1"
