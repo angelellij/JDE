@@ -74,28 +74,31 @@ echo "--------------------------------"
 
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get install libxfce4ui-utils -f            #xfce4
-sudo apt-get install xfce4-panel -f                 #xfce4
-sudo apt-get install xfce4-settings -f              #xfce4
-sudo apt-get install xfconf  -f                     #xfce4
-sudo apt-get install xfce4-power-manager -f         #Power manager for laptops
+sudo apt-get install -y libxfce4ui-utils -f            #xfce4
+sudo apt-get install -y xfce4-panel -f                 #xfce4
+sudo apt-get install -y xfce4-settings -f              #xfce4
+sudo apt-get install -y xfconf  -f                     #xfce4
+sudo apt-get install -y xfce4-power-manager -f         #Power manager for laptops
 
-sudo apt-get install lightdm -f                     #Login Screen
-sudo apt-get install alacritty -f                   #Terminal
-sudo apt-get install nemo -f                        #Files
-sudo apt-get install i3 -f                          #Window Manager
-sudo apt-get install fonts-roboto -f                #Font
-sudo apt-get install rofi -f                        #Apps menu
-# sudo apt-get install picom -f                       #Compositor
-sudo apt-get install lxappearance -f                #Theme manager
-sudo apt-get install xbacklight -f                  #Brightess
-sudo apt-get install flameshot -f                   #Screenshot taker
-sudo apt-get install pavucontrol -f                 #Audio GUI
-sudo apt-get install blueman -f             #Bluetooth GUI
-sudo apt-get install nm-connection-editor -f        #Network manager 
-sudo apt-get install policykit-1-gnome -f           #PolKit
-sudo apt-get install dunst -f                       #Notifications
-sudo apt-get install wmctrl -f                      #Utility
+sudo apt-get install -y libnotify-bin
+sudo apt-get install -y network-manager
+
+sudo apt-get install -y lightdm -f                     #Login Screen
+sudo apt-get install -y alacritty -f                   #Terminal
+sudo apt-get install -y nemo -f                        #Files
+sudo apt-get install -y i3 -f                          #Window Manager
+sudo apt-get install -y fonts-roboto -f                #Font
+sudo apt-get install -y rofi -f                        #Apps menu
+# sudo apt-get -y install picom -f                       #Compositor
+sudo apt-get install -y lxappearance -f                #Theme manager
+sudo apt-get install -y xbacklight -f                  #Brightess
+sudo apt-get install -y flameshot -f                   #Screenshot taker
+sudo apt-get install -y pavucontrol -f                 #Audio GUI
+sudo apt-get install -y blueman -f             #Bluetooth GUI
+sudo apt-get install -y nm-connection-editor -f        #Network manager 
+sudo apt-get install -y policykit-1-gnome -f           #PolKit
+sudo apt-get install -y dunst -f                       #Notifications
+sudo apt-get install -y wmctrl -f                      #Utility
 
 echo "-------------------------------"
 echo "Installing dependencies.."
@@ -217,6 +220,7 @@ echo "-------------------------------"
 # sudo rm -r JDE
 
 xsetroot -solid "#202124"
+systemctl enable NetworkManager.service
 
 sudo systemctl start lightdm
 sudo systemctl restart lightdm
