@@ -80,9 +80,6 @@ sudo apt-get install -y xfce4-settings -f              #xfce4
 sudo apt-get install -y xfconf  -f                     #xfce4
 sudo apt-get install -y xfce4-power-manager -f         #Power manager for laptops
 
-sudo apt-get install -y libnotify-bin
-sudo apt-get install -y network-manager
-
 sudo apt-get install -y lightdm -f                     #Login Screen
 sudo apt-get install -y alacritty -f                   #Terminal
 sudo apt-get install -y nemo -f                        #Files
@@ -94,9 +91,13 @@ sudo apt-get install -y lxappearance -f                #Theme manager
 sudo apt-get install -y xbacklight -f                  #Brightess
 sudo apt-get install -y flameshot -f                   #Screenshot taker
 sudo apt-get install -y pavucontrol -f                 #Audio GUI
-sudo apt-get install -y blueman -f             #Bluetooth GUI
-sudo apt-get install -y nm-connection-editor -f        #Network manager 
+sudo apt-get install -y blueman -f                     #Bluetooth GUI
+sudo apt-get install -y network-manager                #Network manager
+sudo apt-get install -y nmtui -f                       #Network manager GUI
+
 sudo apt-get install -y policykit-1-gnome -f           #PolKit
+
+sudo apt-get install -y libnotify-bin                  #Notifications daemon
 sudo apt-get install -y dunst -f                       #Notifications
 sudo apt-get install -y wmctrl -f                      #Utility
 
