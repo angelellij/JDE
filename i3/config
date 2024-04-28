@@ -156,8 +156,8 @@ bindsym $mod+b exec google-chrome
 bindsym $mod+x exec --no-startup-id nemo
 bindsym $mod+space exec --no-startup-id "rofi -modi 'drun,window,comms:.config/rofi/comms.sh'  -show drun"
 
-bindsym $mod+Ctrl+s exec xfce4-session-logout --halt
-bindsym $mod+Ctrl+r exec xfce4-session-logout --reboot
+bindsym $mod+Ctrl+s exec systemctl poweroff
+bindsym $mod+Ctrl+r exec systemctl reboot
 
 bindsym $mod+q kill
 bindsym $mod+Ctrl+p exec --no-startup-id alacritty -e top
