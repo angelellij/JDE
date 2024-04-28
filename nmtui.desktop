@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Wifi settings
-Comment=Rofi Wifi
-Exec=.config/rofi/wifi.sh
+Comment=nmtui wifi
+Exec=nmtui
 Icon=org.xfce.settings.accessibility
 Terminal=false
 Type=Application
