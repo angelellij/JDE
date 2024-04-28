@@ -80,6 +80,8 @@ sudo apt-get install -y xfce4-settings -f              #xfce4
 sudo apt-get install -y xfconf  -f                     #xfce4
 sudo apt-get install -y xfce4-power-manager -f         #Power manager for laptops
 
+sudo apt-get install -y wget                           # To install other apps
+
 sudo apt-get install -y lightdm -f                     #Login Screen
 sudo apt-get install -y alacritty -f                   #Terminal
 sudo apt-get install -y nemo -f                        #Files
@@ -218,10 +220,9 @@ echo "-------------------------------"
 echo "       Finishing touches       "
 echo "-------------------------------"
 
-# sudo rm -r JDE
-
-xsetroot -solid "#202124"
 systemctl enable NetworkManager.service
+
+sudo rm -r JDE
 
 sudo systemctl start lightdm
 sudo systemctl restart lightdm
