@@ -97,7 +97,7 @@ sudo apt-get install -y blueman -f                     #Bluetooth GUI
 sudo apt-get install -y network-manager                #Network manager
 sudo apt-get install -y nmtui -f                       #Network manager GUI
 
-sudo apt-get install -y policykit-1-gnome -f           #PolKit
+sudo apt-get install -yw	 policykit-1-gnome -f           #PolKit
 
 sudo apt-get install -y libnotify-bin                  #Notifications daemon
 sudo apt-get install -y dunst -f                       #Notifications
@@ -113,7 +113,8 @@ echo "-------------------------------"
 echo " Remove unnecesary.."
 echo "-------------------------------"
 
-sudo apt remove xfce4-notifyd
+sudo apt remove xfce4-notifyd/
+sudo apt remove kded5
 sudo apt autoremove
 
 echo "-------------------------------"
