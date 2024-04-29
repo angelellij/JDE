@@ -74,10 +74,10 @@ echo "--------------------------------"
 
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get install -y libxfce4ui-utils -f            #xfce4
-sudo apt-get install -y xfce4-panel -f                 #xfce4
-sudo apt-get install -y xfce4-settings -f              #xfce4
-sudo apt-get install -y xfconf  -f                     #xfce4
+#sudo apt-get install -y libxfce4ui-utils -f            #xfce4
+#sudo apt-get install -y xfce4-panel -f                 #xfce4
+#sudo apt-get install -y xfce4-settings -f              #xfce4
+#sudo apt-get install -y xfconf  -f                     #xfce4
 sudo apt-get install -y xfce4-power-manager -f         #Power manager for laptops
 
 sudo apt-get install -y wget                           # To install other apps
