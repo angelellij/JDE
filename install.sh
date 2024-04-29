@@ -83,7 +83,7 @@ sudo apt-get install -y xfce4-power-manager -f         #Power manager for laptop
 sudo apt-get install -y wget                           # To install other apps
 
 sudo apt-get install -y lightdm -f                     #Login Screen
-sudo apt-get install -y alacritty -f                   #Terminal
+
 sudo apt-get install -y nemo -f                        #Files
 sudo apt-get install -y i3 -f                          #Window Manager
 sudo apt-get install -y fonts-roboto -f                #Font
@@ -97,11 +97,14 @@ sudo apt-get install -y blueman -f                     #Bluetooth GUI
 sudo apt-get install -y network-manager                #Network manager
 sudo apt-get install -y nmtui -f                       #Network manager GUI
 
-sudo apt-get install -yw	 policykit-1-gnome -f           #PolKit
-
-sudo apt-get install -y libnotify-bin                  #Notifications daemon
+sudo apt-get install -y	 policykit-1-gnome -f          #PolKit
+sudo apt-get install -y htop -f                        #Check resources stats   
+sudo apt-get install -y libnotify-bin -f               #Notifications daemon
 sudo apt-get install -y dunst -f                       #Notifications
 sudo apt-get install -y wmctrl -f                      #Utility
+
+sudo apt-get install -y alacritty -f                   #Terminal
+sudo update-alternatives --set x-terminal-emulator /usr/bin/alacritty
 
 echo "-------------------------------"
 echo "Installing dependencies.."
