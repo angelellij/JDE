@@ -16,10 +16,10 @@ CHROME="google-chrome-stable"
 FIREFOX="firefox-esr"
 
 STEAM="steam"
+STEAMLIB="libc6-i386"
+
 GIMP="gimp"
 OBS="obs-studio"
-
-
 
 #Utilities
 
@@ -74,18 +74,15 @@ echo "--------------------------------"
 
 sudo apt-get update
 sudo apt-get upgrade
-#sudo apt-get install -y libxfce4ui-utils -f            #xfce4
-#sudo apt-get install -y xfce4-panel -f                 #xfce4
-#sudo apt-get install -y xfce4-settings -f              #xfce4
-#sudo apt-get install -y xfconf  -f                     #xfce4
+
 sudo apt-get install -y xfce4-power-manager -f         #Power manager for laptops
-
 sudo apt-get install -y wget                           # To install other apps
-
 sudo apt-get install -y lightdm -f                     #Login Screen
 
 sudo apt-get install -y nemo -f                        #Files
 sudo apt-get install -y i3 -f                          #Window Manager
+sudo apt-get install -y jq -f                          #Utility for i3 script
+sudo apt-get install -y feh -f                         #Background image
 sudo apt-get install -y fonts-roboto -f                #Font
 sudo apt-get install -y rofi -f                        #Apps menu
 # sudo apt-get -y install picom -f                       #Compositor
@@ -131,6 +128,7 @@ if [ "$BLOAT" = true ]; then
 	get_install_deb $CHROME "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
 	get_install_deb $STEAM "https://cdn.akamai.steamstatic.com/client/installer/steam.deb"
 	get_install_apt $GIMP
+	get_install_apt $STEAMLIB
     get_install_apt $FIREFOX
 fi
 
@@ -178,6 +176,7 @@ add_exec_permission_to_sh() {
 }
 
 add_exec_permission_to_sh ".config/rofi"
+add_exec_permission_to_sh ".config/i3"
 add_exec_permission_to_sh ".config/dunst"
 
 echo "-------------------------------"
