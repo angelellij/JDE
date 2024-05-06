@@ -231,3 +231,13 @@ for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
 for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
 for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
 for_window [title="^Steam Keyboard$"] floating enable
+
+exec --no-startup-id feh --bg-scale .config/i3/wallpaper.png
+
+
+#Scripts on init
+exec --no-startup-id ~/.config/i3/move_wins.sh &
+exec --no-startup-id ~/.config/i3/notify_work.sh &
+exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id picom -b
+

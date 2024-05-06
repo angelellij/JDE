@@ -25,11 +25,11 @@ configuration {
 
 /*****----- Global Properties -----*****/
 * {
-    font:                        "Roboto Font 10";
+    font:                        "Roboto Font 14";
     white:                       #ffffff;
     background:                  #202124;
-    background-alt:              #252525;
-    foreground:                  #669252;
+    background-alt:              #383b3f;
+    foreground:                  #90957D;
     urgent:                      #707070;
 }
 
@@ -40,15 +40,18 @@ window {
     location:                    center;
     anchor:                      center;
     fullscreen:                  false;
-    width:                       90%;
-    height:                      90%;
-    x-offset:                    0px;
-    y-offset:                    0px;
+    width:                       30%;
+    height:                      100%;
+    x-offset:                    -35%;
+    y-offset:                    0%;
     padding:                     50px;
     /* properties for all widgets */
     enabled:                     true;
     cursor:                      "default";
     background-color:            @background;
+    border:                      0 4px 0 0;
+    border-color:                @foreground;
+    
 }
 
 /*****----- Main Box -----*****/
@@ -144,7 +147,7 @@ element {
     background-color:            transparent;
     text-color:                  @foreground;
     cursor:                      pointer;
-    children:                    [ "element-line", "element-text","element-line" ];
+    children:                    [ "selectable", "element-text" ];
     expand: false;
 }
 
@@ -162,31 +165,30 @@ element normal.urgent {
     text-color:                  @foreground;
 }
 
-element-line{
+selectable{
     background-color:            @foreground;
-    margin: 8px;
-    width:50px;
-    margin-top:5px;    
-
+    margin: -8px 8px;
+    width:10px;
     enabled:                     true;
     expand:                      false;
-           
 }
+
 
 element selected.normal,
 element selected.urgent,
 element selected.active,
-element.alternate.normal {
+element.alternate.normal,
+element.alternate.urgent,
+element.alternate.active {
     text-color:                  @foreground;
-    background-color:            transparent;
+    background-color:            @transparent;
+    border-radius: 0;
 }
 
-element selected.normal,
-element selected.urgent,
-element selected.active{
-    border:1px;
-    border-radius: 0;
+element selected{
     font: "uppercase";
+    border-radius:   0 15px 15px 0;
+    background-color:            @background-alt;
 }
 
 element-icon {

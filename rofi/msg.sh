@@ -23,4 +23,4 @@ net=$(nmcli -t -f NAME connection show --active | head -n 1)
 # cpu_temp=$(sensors | grep -i 'Package id 0' | awk '{print $4}'
 # )
 
-echo -en "\0message\x1fBluetooth: "$blue" | Network: "$net" | Battery: "$bat" | Date: "$current_date" - "$current_time"\n"
+echo -en "\0message\x1fBattery: "$bat" - Date: "$current_date" - Time: "$current_time"\n"

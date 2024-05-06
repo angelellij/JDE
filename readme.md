@@ -23,11 +23,3 @@ sudo nano ./JDE/install.sh #If you want to toggle config
 sudo chmod +x ./JDE/install.sh
 ./JDE/install.sh #No sudo!!!
 ```
-
-
-
-## **On Reboot**
-```
-#Set background color to solid blackish
-xsetroot -solid "#202124"
-```
