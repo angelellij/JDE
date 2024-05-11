@@ -10,10 +10,14 @@ BLOAT=true
 #If bloat is true you can finetune some apps to not install
 CODE="code"
 GITHUB="github-desktop"
+MONGODB="mongodb"
+MONGOSH="mongosh"
+MONGOGUI="mongogui"
 DISCORD="discord"
 
 CHROME="google-chrome-stable"
 FIREFOX="firefox-esr"
+EPIPHANY="epiphany-browser"
 
 STEAM="steam"
 STEAMLIB="libc6-i386"
@@ -127,8 +131,12 @@ if [ "$BLOAT" = true ]; then
 	get_install_deb $DISCORD "https://discord.com/api/download?platform=linux&format=deb"
 	get_install_deb $CHROME "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
 	get_install_deb $STEAM "https://cdn.akamai.steamstatic.com/client/installer/steam.deb"
+ 	get_install_deb $MONGODB "https://repo.mongodb.org/apt/debian/dists/bookworm/mongodb-org/7.0/main/binary-amd64/mongodb-org-server_7.0.9_amd64.deb"
+ 	get_install_deb $MONGOSH "https://downloads.mongodb.com/compass/mongodb-mongosh_2.2.5_amd64.deb"
+  	get_install_deb $MONGOGUI "https://downloads.mongodb.com/compass/mongodb-compass_1.43.0_amd64.deb"
 	get_install_apt $GIMP
 	get_install_apt $STEAMLIB
+ 	get_install_apt $EPIPHANY
     get_install_apt $FIREFOX
 fi
 
