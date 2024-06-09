@@ -2,7 +2,6 @@
 
 declare -A commands=(
     ["Config"]="code ~/.config > /dev/null 2>&1"
-    ["Wifi"]="~/.config/rofi/rofi-wifi-menu.sh > /dev/null 2>&1"
 )
 
 for option in "${!commands[@]}"; do
@@ -15,6 +14,3 @@ done
 for option in "${!commands[@]}"; do
     echo $option
 done
-
-
-./.config/rofi/msg.sh

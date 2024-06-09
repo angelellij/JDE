@@ -79,32 +79,37 @@ echo "--------------------------------"
 sudo apt-get update
 sudo apt-get upgrade
 
-sudo apt-get install -y xfce4-power-manager -f         #Power manager for laptops
 sudo apt-get install -y wget                           # To install other apps
 sudo apt-get install -y lightdm -f                     #Login Screen
 
-sudo apt-get install -y nemo -f                        #Files
 sudo apt-get install -y i3 -f                          #Window Manager
 sudo apt-get install -y jq -f                          #Utility for i3 script
-sudo apt-get install -y feh -f                         #Background image
+sudo apt-get install -y wmctrl -f                      #Utility for i3 script
+sudo apt-get install -y xdotool -f                     #Utility for i3 script
+
+sudo apt-get install -y picom -f                       #Compositor
+sudo apt-get install -y	 policykit-1-gnome -f          #PolKit
+sudo apt-get install -y libnotify-bin -f               #Notifications daemon
+sudo apt-get install -y dunst -f                       #Notifications
+
 sudo apt-get install -y fonts-roboto -f                #Font
-sudo apt-get install -y rofi -f                        #Apps menu
-# sudo apt-get -y install picom -f                       #Compositor
+sudo apt-get install -y feh -f                         #Background image
 sudo apt-get install -y lxappearance -f                #Theme manager
-sudo apt-get install -y xbacklight -f                  #Brightess
+
+sudo apt-get install -y rofi -f                        #Apps menu
+sudo apt-get install -y alacritty -f                   #Terminal
+sudo apt-get install -y nemo -f                        #Files
 sudo apt-get install -y flameshot -f                   #Screenshot taker
+sudo apt-get install -y htop -f                        #Check resources stats   
+
+sudo apt-get install -y xbacklight -f                  #Brightess
 sudo apt-get install -y pavucontrol -f                 #Audio GUI
 sudo apt-get install -y blueman -f                     #Bluetooth GUI
+sudo apt-get install -y xfce4-power-manager -f         #Power manager for laptops
 sudo apt-get install -y network-manager                #Network manager
 sudo apt-get install -y nmtui -f                       #Network manager GUI
 
-sudo apt-get install -y	 policykit-1-gnome -f          #PolKit
-sudo apt-get install -y htop -f                        #Check resources stats   
-sudo apt-get install -y libnotify-bin -f               #Notifications daemon
-sudo apt-get install -y dunst -f                       #Notifications
-sudo apt-get install -y wmctrl -f                      #Utility
 
-sudo apt-get install -y alacritty -f                   #Terminal
 sudo update-alternatives --set x-terminal-emulator /usr/bin/alacritty
 
 echo "-------------------------------"
@@ -155,6 +160,7 @@ echo "        DE Config files        "
 echo "-------------------------------"
 
 update_config_files "dunst"          #Notifications
+update_config_files "picom"          #Compositor
 update_config_files "i3"             #Window Manager
 update_config_files "rofi"           #Apps menu
 
@@ -185,7 +191,6 @@ add_exec_permission_to_sh() {
 
 add_exec_permission_to_sh ".config/rofi"
 add_exec_permission_to_sh ".config/i3"
-add_exec_permission_to_sh ".config/dunst"
 
 echo "-------------------------------"
 echo "         Add .desktop          "
