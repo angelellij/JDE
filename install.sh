@@ -88,7 +88,7 @@ sudo apt-get install -y wmctrl -f                      #Utility for i3 script
 sudo apt-get install -y xdotool -f                     #Utility for i3 script
 
 sudo apt-get install -y picom -f                       #Compositor
-sudo apt-get install -y	 policykit-1-gnome -f          #PolKit
+sudo apt-get install -y policykit-1-gnome -f           #PolKit
 sudo apt-get install -y libnotify-bin -f               #Notifications daemon
 sudo apt-get install -y dunst -f                       #Notifications
 
@@ -163,6 +163,7 @@ update_config_files "dunst"          #Notifications
 update_config_files "picom"          #Compositor
 update_config_files "i3"             #Window Manager
 update_config_files "rofi"           #Apps menu
+update_config_files "alacritty"           #Terminal
 
 echo "-------------------------------"
 echo " .sh files add exec permission "
