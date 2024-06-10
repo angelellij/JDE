@@ -87,6 +87,7 @@ sudo apt-get install -y jq -f                          #Utility for i3 script
 sudo apt-get install -y wmctrl -f                      #Utility for i3 script
 sudo apt-get install -y xdotool -f                     #Utility for i3 script
 
+sudo apt-get install -y polybar -f                     #Polybar
 sudo apt-get install -y picom -f                       #Compositor
 sudo apt-get install -y policykit-1-gnome -f           #PolKit
 sudo apt-get install -y libnotify-bin -f               #Notifications daemon
@@ -163,7 +164,9 @@ update_config_files "dunst"          #Notifications
 update_config_files "picom"          #Compositor
 update_config_files "i3"             #Window Manager
 update_config_files "rofi"           #Apps menu
-update_config_files "alacritty"           #Terminal
+update_config_files "alacritty"      #Terminal
+update_config_files "polybar"        #Bar
+update_config_files "gtk-3.0"        #Adwaita theme
 
 echo "-------------------------------"
 echo " .sh files add exec permission "
