@@ -176,7 +176,7 @@ exec --no-startup-id ~/.config/i3/move_wins.sh &
 exec --no-startup-id ~/.config/i3/autotiling.sh
 exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id picom -b
-exec --no-startup-id polybar
-
+exec --no-startup-id polybar &
+exec --no-startup-id /usr/bin/numlockx on &
 
 exec sleep 1; polybar-msg cmd hide

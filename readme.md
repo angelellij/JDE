@@ -23,3 +23,32 @@ sudo nano ./JDE/install.sh #If you want to toggle config
 sudo chmod +x ./JDE/install.sh
 ./JDE/install.sh #No sudo!!!
 ```
+
+## **Post-install**
+
+Autologin
+
+```
+#Run on terminal
+sudo nano /etc/lightdm/lightdm.conf
+
+#Change lines below [Seat:*]
+autologin-user=<username>
+autologin-user-timeout=0
+
+#Restart lightdm
+sudo systemctl restart lightdm
+```
+
+Skip Grub
+
+```
+#Run on terminal
+sudo nano /etc/default/grub
+
+#Change lines below [Seat:*]
+GRUB_TIMEOUT=0
+
+#Update grub
+sudo update-gurb
+```
