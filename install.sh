@@ -109,6 +109,7 @@ sudo apt-get install -y blueman -f                     #Bluetooth GUI
 sudo apt-get install -y xfce4-power-manager -f         #Power manager for laptops
 sudo apt-get install -y network-manager                #Network manager
 sudo apt-get install -y nmtui -f                       #Network manager GUI
+sudo apt install printer-driver-all -y -f              #Printer Utilities
 sudo apt-get install -y numlockx -f                    #Used to unlock numpad on start
 
 
