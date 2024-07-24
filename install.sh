@@ -115,7 +115,7 @@ sudo apt-get install -y numlockx -f                    #Used to unlock numpad on
 
 sudo update-alternatives --set x-terminal-emulator /usr/bin/alacritty
 
-echo "options bluetooth disable_ertm=Y" | sudo tee /etc/modprobe.d/bluetooth.conf > /dev/null #PS5 controller fix
+echo "options bluetooth disable_ertm=Y" | tee /etc/modprobe.d/bluetooth.conf > /dev/null #PS5 controller fix
 
 echo "-------------------------------"
 echo "Installing dependencies.."
