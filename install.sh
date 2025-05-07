@@ -110,7 +110,15 @@ sudo apt-get install -y xfce4-power-manager -f         #Power manager for laptop
 sudo apt-get install -y network-manager                #Network manager
 sudo apt-get install -y nmtui -f                       #Network manager GUI
 sudo apt-get install -y numlockx -f                    #Used to unlock numpad on start
+sudo apt-get install -y qalc -f                        #CLI calculator
+sudo apt-get install -y parcellite -f                  #Clipboard applet
 
+sudo apt-get install -y cmake -f                       #Utilities
+
+
+#Next 2 lines are Steam dependencies
+sudo dpkg --add-architecture i386 && sudo apt-get update -y
+sudo apt-get install -y libgl1-mesa-dri:i386 libgl1-mesa-glx:i386 cabextract-f
 
 sudo update-alternatives --set x-terminal-emulator /usr/bin/alacritty
 
